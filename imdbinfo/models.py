@@ -48,6 +48,7 @@ class Person(BaseModel):
 
     @classmethod
     def from_directors(cls, data: dict):
+        data = data['node']
         return cls(
             name=data["name"]["nameText"]["text"],
             imdb_id=data["name"]["id"].replace("nm", ""),
@@ -71,11 +72,11 @@ class Person(BaseModel):
     @classmethod
     def from_cast(cls, data: dict):
         return cls(
-            name=data["node"]["name"]["nameText"]["text"],
-            imdb_id=data["node"]["name"]["id"].replace("nm", ""),
-            id=data["node"]["name"]["id"].replace("nm", ""),
-            imdbId=data["node"]["name"]["id"],
-            url=f"https://www.imdb.com/name/{data['node']['name']['id']}",
+            name=data["name"]["nameText"]["text"],
+            imdb_id=data["name"]["id"].replace("nm", ""),
+            id=data["name"]["id"].replace("nm", ""),
+            imdbId=data["name"]["id"],
+            url=f"https://www.imdb.com/name/{data['name']['id']}",
             job="Cast",
         )
 
