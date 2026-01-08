@@ -122,7 +122,7 @@ def _parse_directors(result):
     return [
         Person.from_directors(edge)
         for group in result
-        if group.get("grouping", {}).get("text") == "Directors"
+        if group.get("grouping", {}).get("text") in [ "Directors" , "Director" ]
         for edge in group.get("credits", {}).get("edges", [])
     ]
 
