@@ -119,14 +119,12 @@ def pjmespatch(query, data, post_process=None, *args, **kwargs):
 
 
 def _parse_directors(result):
-    directors = []
-    for credit_group in result:
-        if credit_group.get("grouping", {}).get("text") == "Directors":
-            directors.append(
-                Person.from_directors(a)
-                for a in credit_group.get("credits",{} ).get("edges", [])
-            )
-    return directors
+    return [
+        Person.from_directors(edge)
+        for group in result
+        if group.get("grouping", {}).get("text") == "Directors"
+        for edge in group.get("credits", {}).get("edges", [])
+    ]
 
 
 
