@@ -24,6 +24,7 @@ import logging
 from .services import (
     get_movie,
     search_title,
+    set_proxy,
     get_name,
     get_episodes,
     get_all_episodes,

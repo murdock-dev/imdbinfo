@@ -52,6 +52,16 @@ from .locale import _retrieve_url_lang
 
 niquests = SnycSession(impersonate = "chrome")
 
+def set_proxy(host , port , username = None , password = None):
+  
+    if username and password:
+        proxy_url = f"http://{username}:{password}@{host}:{port}"
+    else:
+        proxy_url = f"http://{host}:{port}"
+    niquests.proxies.update({
+        "http": proxy_url,
+        "https": proxy_url,
+    })
 
 class TitleType(Enum):
     """
