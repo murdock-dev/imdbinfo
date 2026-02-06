@@ -24,11 +24,10 @@ from typing import Optional, Dict, Union, List, Tuple, Any
 from functools import lru_cache
 from time import time
 import logging
-import niquests
 import json
 from lxml import html
 from enum import Enum
-from curl_cffi import requests as niquests
+from curl_cffi import Session as SnycSession
 
 
 from .models import (
@@ -50,6 +49,8 @@ from .parsers import (
     parse_json_filmography,
 )
 from .locale import _retrieve_url_lang
+
+niquests = SnycSession(impersonate = "chrome")
 
 
 class TitleType(Enum):
