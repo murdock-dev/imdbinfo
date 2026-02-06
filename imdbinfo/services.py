@@ -28,6 +28,7 @@ import niquests
 import json
 from lxml import html
 from enum import Enum
+from curl_cffi import requests as niquests
 
 
 from .models import (
